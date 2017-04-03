@@ -1,5 +1,5 @@
 <!doctype HTML>
-<html lang="en" ng-app>
+<html lang="en" ng-app='nightlife'>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,14 +15,7 @@
     </head>
     <body>
         <div class="container">
-            <header class="row text-center text-uppercase padded">
-                <h1 class="col-xs-12">
-                    <span class="glyphicon glyphicon-glass hidden-xs" aria-hidden="true"></span>
-                    <span class="special-font">Let's Party</span>
-                    <span class="glyphicon glyphicon-glass hidden-xs" aria-hidden="true"></span>
-                </h1>
-            </header>
-            
+            <ng-view></ng-view>
         </div>
         
         
@@ -32,5 +25,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
         <script src="javascript/angular-jwt/dist/angular-jwt.js"></script>
+        <script src="angular/app.js"></script>
     </body>
 </html>
