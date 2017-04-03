@@ -7,7 +7,9 @@ function config($httpProvider,$routeProvider){
         templateUrl:'angular/main/main.html'
     })
     .when('/register',{
-        templateUrl:'angular/register/register.html'
+        templateUrl:'angular/register/register.html',
+        controller:RegisterController,
+        controllerAs:"vm"
     })
     .otherwise({
         redirect:'/'
