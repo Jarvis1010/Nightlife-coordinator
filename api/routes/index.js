@@ -8,4 +8,8 @@ router
 .route('/users/register')
 .post(ctrUsers.register);
 
+router
+.route('/users/login')
+.post(ctrUsers.login);
+
 module.exports = router;

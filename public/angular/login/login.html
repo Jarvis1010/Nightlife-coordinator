@@ -5,7 +5,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Login</h4>
       </div>
-      <form>
+      
+      <!--only show logout body if logged in-->
+      <div class="modal-body" ng-if="vm.isLoggedIn()">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button ng-click="vm.logout()" type="button" class="btn btn-primary">Logout</button>
+      </div>
+      
+      <form ng-if="!vm.isLoggedIn()">
           <div class="modal-body">
               <div class="form-group">
                 <label for="username">Username</label>
@@ -22,6 +29,7 @@
             <button ng-click="vm.login()" type="button" class="btn btn-primary">Login</button>
           </div>
       </form>
+      
     </div>
   </div>
 </div>

@@ -2,7 +2,9 @@
 <main class="row">
     <header class="col-xs-12 text-center">
         <h2>Search down below to find where everyone is going.</h2>
-        <h3><a href="#/register">Register</a> and <a data-toggle="modal" data-target="#loginModal">Login</a> to show where you are going.</h3>
+        <h3 ng-if="!vm.isLoggedIn()"><a href="#/register">Register</a> and <a data-toggle="modal" data-target="#loginModal">Login</a> to show where you are going.</h3>
+        <h3 ng-if="vm.isLoggedIn()">Welcome {{vm.username()}}! Click <a data-toggle="modal" data-target="#loginModal">here</a> to logout</h3>
+
     </header>
     <section class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
         <form class="input-group">
