@@ -11,9 +11,10 @@ function MainController($http,Authfactory){
         return Authfactory.username;
     };
     
-    vm.findClubs=function (){
-        $http.get('/api/clubs?location='+vm.location).then(function(res){
-            vm.clubs=res.data.results;
+    vm.findBars=function (){
+        $http.get('/api/bars?location='+vm.location).then(function(res){
+            vm.bars=res.data.results;
+            console.log(vm.bars);
         }).catch(function(err){
             console.log(err);
         });

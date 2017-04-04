@@ -10,16 +10,27 @@
         <form class="input-group">
             <input ng-model="vm.location" type="search" class="form-control" placeholder="Type in a city and state or a zipcode">
             <span class="input-group-btn">    
-                <button ng-click="vm.findClubs()" type="submit" class="btn btn-default">Find Clubs</button>
+                <button ng-click="vm.findBars()" type="submit" class="btn btn-default">Find Bars</button>
             </span>
         </form>
         <figure class="row">
             <img src="/img/powered_by_google_on_white.png" class="img-responsive pull-right" alt="Powered by Google"/>
         </figure>
-        <div class="row">
-            <ul ng-if="vm.clubs">
-                <li ng-repeat="club in vm.clubs">{{club.name}}</li>
-            </ul>
+        <div ng-if="vm.bars" class="row">
+            <div ng-repeat="bar in vm.bars" class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{bar.name}}</h3>
+              </div>
+              <section class="panel-body">
+                <address class="row">
+                    <p class="col-xs-6">{{bar.formatted_address}}</p>
+                </address>
+                <figure ng-repeat="photo in bar.photos" class="row">
+                    <img src="/api/bars/photo/{{photo.photo_reference}}" class="img-responsive img-circle thumbnail" alt="Responsive image"/>
+                </figure>
+              </section>
+            </div>
+           
         </div>
     </section>
 </main>

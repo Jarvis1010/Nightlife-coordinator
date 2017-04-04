@@ -2,12 +2,16 @@ var express=require('express');
 var router=express.Router();
 
 var ctrUsers=require('../controllers/users.controller.js');
-var ctrClubs=require('../controllers/clubs.controller.js');
+var ctrBars=require('../controllers/bars.controller.js');
 
 //clubdata requests
 router
-.route('/clubs')
-.get(ctrClubs.getClubs);
+.route('/bars')
+.get(ctrBars.getBars);
+
+router
+.route('/bars/photo/:id')
+.get(ctrBars.getPhoto);
 
 //authentication
 router
