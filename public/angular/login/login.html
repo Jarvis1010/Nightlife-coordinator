@@ -8,8 +8,8 @@
       
       <!--only show logout body if logged in-->
       <div class="modal-body" ng-if="vm.isLoggedIn()">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         <button ng-click="vm.logout()" type="button" class="btn btn-primary">Logout</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
       
       <form ng-if="!vm.isLoggedIn()">
