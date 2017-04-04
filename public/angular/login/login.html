@@ -9,17 +9,17 @@
           <div class="modal-body">
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input ng-model="vm.username" type="text" class="form-control" id="username" placeholder="Username">
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input ng-model="vm.password" type="password" class="form-control" id="password" placeholder="Password">
               </div>
           </div>
           <div class="modal-footer">
-            Login or <a href="#/register">Register</a>  
+            <span class="pull-left">Login or <a href="#/register" onclick="$('#loginModal').modal('hide')">Register</a></span>  
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Login</button>
+            <button ng-click="vm.login()" type="button" class="btn btn-primary">Login</button>
           </div>
       </form>
     </div>
