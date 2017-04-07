@@ -31,3 +31,4 @@ process.once('SIGUSR2',function(){
 });
 
 require('./users.model.js');
+require('./bars.model.js');

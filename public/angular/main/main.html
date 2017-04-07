@@ -25,11 +25,16 @@
               </div>
               <section class="panel-body">
                 <address class="row">
-                    <p class="col-xs-6">{{bar.formatted_address}}</p>
+                    <p class="col-xs-6">{{bar.vicinity}}</p>
                 </address>
-                <figure ng-repeat="photo in bar.photos" class="row">
-                    <img src="/api/bars/photo/{{photo.photo_reference}}" class="img-responsive img-circle thumbnail" alt="Responsive image"/>
-                </figure>
+                <div class="row">   
+                    <figure ng-repeat="photo in bar.photos" class="col-sm-6">
+                        <img src="/api/bars/photo/{{photo.photo_reference}}" class="img-responsive img-circle thumbnail" alt="Responsive image"/>
+                    </figure>
+                    <div class="col-sm-6">
+                        <button class="btn btn-lg btn-primary pull-right padded">Going</button>
+                    </div>
+                </div> 
               </section>
             </div>
         </div>

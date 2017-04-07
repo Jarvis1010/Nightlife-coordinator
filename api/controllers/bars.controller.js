@@ -1,5 +1,6 @@
 var mongoose=require('mongoose');
 var User=mongoose.model('User');
+var Bar=mongoose.model('Bar');
 var request=require('request');
 
 module.exports.getBars=function(req,res){
@@ -18,8 +19,25 @@ module.exports.getBars=function(req,res){
              if(error){
                 res.status(400).json(error);
               }else{
-                  var bars=JSON.parse(body);
-                  res.json(bars);
+                  var bars=[];
+                  bars=JSON.parse(body);
+                  
+                  Bar.find().exec(function (err,barUsers){
+                      if(err){
+                          res.status(501).json({message:"error fetching results."})
+                      }else{
+                         //retriving required info out of results and mapping info from mongo
+                        // var final=bars.map(function(bar){
+                            /* var users=barUsers.find(function(user){
+                                 return user.barId=bar.id;
+                             });
+                             users=users?users:[];*/
+                        //     return {id:bar.id,name:bar.name,photos:bar.photos,vicinity:bar.vicinity,users:[]};
+                        // });
+                        //console.log();
+                         res.json(bars);
+                      }
+                  });
               }
         });
     }
