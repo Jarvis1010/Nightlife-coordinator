@@ -11,7 +11,8 @@ module.exports.getBars=function(req,res){
       if(err){
         res.status(400).json(err);
       }else{
-         res.json(JSON.parse(body));
+         var results =JSON.parse(body);
+         res.json(results);
       }    
     });
 };
@@ -21,5 +22,6 @@ module.exports.getPhoto=function(req,res){
     
     var url='https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='+id+'&key='+process.env.GOOGLEAPI;
     res.redirect(url);
+    
     
 };

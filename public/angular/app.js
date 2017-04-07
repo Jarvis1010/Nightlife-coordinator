@@ -1,6 +1,6 @@
 angular.module("nightlife",['ngRoute','angular-jwt']).config(config).run(run);
 
-function config($httpProvider,$routeProvider){
+function config($httpProvider,$routeProvider,$locationProvider){
     $httpProvider.interceptors.push('Authinterceptor');
     
     //set routes
@@ -18,6 +18,8 @@ function config($httpProvider,$routeProvider){
     .otherwise({
         redirect:'/'
     });
+    
+    $locationProvider.html5Mode(true);
 }
 
 function run($rootScope,$location,$window,Authfactory){
