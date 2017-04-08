@@ -19,9 +19,10 @@
         </figure>
         
         <div ng-if="vm.bars" class="row padded">
-            <div ng-repeat="bar in vm.bars" class="panel panel-default">
+            <div ng-repeat="bar in vm.bars track by $index" class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">{{bar.name}}</h3>
+                <h3 class="panel-title">{{bar.name}} <span class="pull-right">Going: <span class="badge">{{bar.users.length}}</span></span></h3>
+                
               </div>
               <section class="panel-body">
                 <address class="row">
@@ -32,7 +33,9 @@
                         <img src="/api/bars/photo/{{photo.photo_reference}}" class="img-responsive img-circle thumbnail" alt="Responsive image"/>
                     </figure>
                     <div class="col-sm-6">
-                        <button class="btn btn-lg btn-primary pull-right padded">Going</button>
+                        <a ng-if="!vm.isLoggedIn()" data-toggle="modal" data-target="#loginModal" class="btn btn-lg btn-primary pull-right padded">Going</a>
+                        <a ng-if="vm.isLoggedIn()" ng-click="vm.addUser($index)" class="btn btn-lg btn-primary pull-right padded">Going</a>
+
                     </div>
                 </div> 
               </section>

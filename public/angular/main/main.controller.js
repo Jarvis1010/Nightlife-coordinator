@@ -20,4 +20,9 @@ function MainController($http,Authfactory){
         });
     };
     
+    vm.addUser=function(index){
+        //add is going
+        vm.bars[index].users.push(Authfactory.username);
+    };
+    
 }
