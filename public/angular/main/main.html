@@ -34,8 +34,7 @@
                     </figure>
                     <div class="col-sm-6">
                         <a ng-if="!vm.isLoggedIn()" data-toggle="modal" data-target="#loginModal" class="btn btn-lg btn-primary pull-right padded">Going</a>
-                        <a ng-if="vm.isLoggedIn()" ng-click="vm.addUser($index)" class="btn btn-lg btn-primary pull-right padded">Going</a>
-
+                        <a ng-if="vm.isLoggedIn()" ng-click="vm.update($index)" class="btn btn-lg btn-danger pull-right">Going</a>
                     </div>
                 </div> 
               </section>

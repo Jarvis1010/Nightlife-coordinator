@@ -27,7 +27,7 @@ module.exports.getBars=function(req,res){
                          //retriving required info out of results and mapping info from mongo
                         var final=bars.results.map(function(bar){
                              var users=barUsers.find(function(user){
-                                 return user.barId=bar.id;
+                                 return user.barId==bar.id;
                              });
                              users=users?users:[];
                              return {id:bar.id,name:bar.name,photos:bar.photos,vicinity:bar.vicinity,users:[]};
