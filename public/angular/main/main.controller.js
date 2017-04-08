@@ -13,7 +13,7 @@ function MainController($http,Authfactory){
     
     vm.findBars=function (){
         $http.get('/api/bars?location='+vm.location).then(function(res){
-            vm.bars=res.data.results;
+            vm.bars=res.data;
             console.log(vm.bars);
         }).catch(function(err){
             console.log(err);

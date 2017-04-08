@@ -8,6 +8,11 @@ var routes = require("./api/routes");
 
 var port = process.env.PORT || 8080;
 
+app.use(function(req,res,next){
+    //console.log(req.method,req.url);
+    next();
+});
+
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use(bodyParser.urlencoded({extended:false}));

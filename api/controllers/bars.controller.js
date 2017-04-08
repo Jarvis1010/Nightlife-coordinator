@@ -19,23 +19,21 @@ module.exports.getBars=function(req,res){
              if(error){
                 res.status(400).json(error);
               }else{
-                  var bars=[];
-                  bars=JSON.parse(body);
-                  
+                  var bars=JSON.parse(body);
                   Bar.find().exec(function (err,barUsers){
                       if(err){
                           res.status(501).json({message:"error fetching results."})
                       }else{
                          //retriving required info out of results and mapping info from mongo
-                        // var final=bars.map(function(bar){
-                            /* var users=barUsers.find(function(user){
+                        var final=bars.results.map(function(bar){
+                             var users=barUsers.find(function(user){
                                  return user.barId=bar.id;
                              });
-                             users=users?users:[];*/
-                        //     return {id:bar.id,name:bar.name,photos:bar.photos,vicinity:bar.vicinity,users:[]};
-                        // });
-                        //console.log();
-                         res.json(bars);
+                             users=users?users:[];
+                             return {id:bar.id,name:bar.name,photos:bar.photos,vicinity:bar.vicinity,users:[]};
+                         });
+                        
+                         res.status(200).json(final);
                       }
                   });
               }
