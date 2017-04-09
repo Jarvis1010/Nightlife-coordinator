@@ -19,26 +19,23 @@
         </figure>
         
         <div ng-if="vm.bars" class="row padded">
-            <div ng-repeat="bar in vm.bars track by $index" class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">{{bar.name}} <span class="pull-right">Going: <span class="badge">{{bar.users.length}}</span></span></h3>
-                
-              </div>
+            <section ng-repeat="bar in vm.bars track by $index" class="panel panel-default">
+              <header class="panel-heading">
+                <h3 class="panel-title">{{bar.name | limitTo:40}}<span class="pull-right">Going: <span class="badge">{{bar.users.length}}</span></span></h3>
+              </header>
               <section class="panel-body">
-                <address class="row">
-                    <p class="col-xs-6">{{bar.vicinity}}</p>
-                </address>
-                <div class="row">   
+                <div class="row">
+                    <address class="col-xs-6">{{bar.vicinity}}</address>
+                    <div class="col-sm-6">
+                        <a ng-if="!vm.isLoggedIn()" data-toggle="modal" data-target="#loginModal" class="btn btn-lg btn-primary pull-right padded">Going</a>
+                        <a ng-if="vm.isLoggedIn()" ng-click="vm.update($index)" class="{{vm.isGoing($index)?'btn btn-lg btn-danger pull-right':'btn btn-lg btn-primary pull-right'}}">{{ vm.isGoing($index) ? "Not Going" : "Going"}}</a>
+                    </div>
                     <figure ng-repeat="photo in bar.photos" class="col-sm-6">
                         <img src="/api/bars/photo/{{photo.photo_reference}}" class="img-responsive img-circle thumbnail" alt="Responsive image"/>
                     </figure>
-                    <div class="col-sm-6">
-                        <a ng-if="!vm.isLoggedIn()" data-toggle="modal" data-target="#loginModal" class="btn btn-lg btn-primary pull-right padded">Going</a>
-                        <a ng-if="vm.isLoggedIn()" ng-click="vm.update($index)" class="btn btn-lg btn-danger pull-right">Going</a>
-                    </div>
-                </div> 
+                </div>
               </section>
-            </div>
+            </section>
         </div>
     </section>
     
