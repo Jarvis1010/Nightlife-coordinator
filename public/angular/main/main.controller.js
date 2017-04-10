@@ -8,6 +8,7 @@ function MainController($http,Authfactory){
     };
     
     vm.username=function(){
+        console.log(Authfactory.auth.username)
         return Authfactory.auth.username;
     };
     
