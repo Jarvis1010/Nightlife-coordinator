@@ -25,12 +25,16 @@ module.exports.getBars=function(req,res){
                           res.status(501).json({message:"error fetching results."})
                       }else{
                          //retriving required info out of results and mapping info from mongo
+                        
                         var final=bars.results.map(function(bar){
-                             var users=barUsers.find(function(user){
-                                 return user.barId==bar.id;
+                             var users=[];
+                             barUsers.forEach(function(user){
+                                 if(user.barId==bar.id){
+                                     users=user.users
+                                 }
                              });
-                             users=users?users:[];
-                             return {id:bar.id,name:bar.name,photos:bar.photos,vicinity:bar.vicinity,users:[]};
+                             
+                             return {id:bar.id,name:bar.name,photos:bar.photos,vicinity:bar.vicinity,users:users};
                          });
                         
                          res.status(200).json(final);
@@ -49,6 +53,23 @@ module.exports.getBars=function(req,res){
          getBars(latLNG);
       }    
     });
+};
+
+module.exports.updateBar=function(req,res){
+    if(req.user){
+         var query={barId:req.params.id};
+        var update={users:req.body.users};
+        var options={upsert:true,new:true,setDefaultsOnInsert:true};
+        Bar.findOneAndUpdate(query,update,options,function(err,result){
+            if(err){
+                res.status(404).json({"message":"document not found"});
+            }else{
+                res.json(result);
+            }
+        });
+    }else{
+        res.status(401).json({"message":"Unauthorized"})
+    }
 };
 
 module.exports.getPhoto=function(req,res){

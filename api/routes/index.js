@@ -10,6 +10,10 @@ router
 .get(ctrBars.getBars);
 
 router
+.route('/bars/:id')
+.post(ctrUsers.authenticate,ctrBars.updateBar);
+
+router
 .route('/bars/photo/:id')
 .get(ctrBars.getPhoto);
 

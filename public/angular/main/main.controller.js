@@ -8,14 +8,17 @@ function MainController($http,Authfactory){
     };
     
     vm.username=function(){
-        return Authfactory.username;
+        return Authfactory.auth.username;
     };
     
     vm.isGoing=function(index){
-        var going=vm.bars[index].users.map(function(username){
-            return username==Authfactory.username;
+        var going=false;
+        vm.bars[index].users.forEach(function(username){
+            if(username==Authfactory.auth.username){
+                going=true
+            }
         });
-        return going.length>0;
+        return going;
     };
     
     vm.findBars=function (){
@@ -30,10 +33,17 @@ function MainController($http,Authfactory){
     vm.update=function(index){
         
         if(!vm.isGoing(index)){
-            vm.bars[index].users.push(Authfactory.username);
+            vm.bars[index].users.push(Authfactory.auth.username);
+           
         }else{
-            vm.bars[index].users.splice(Authfactory.username);
-        }    
+            vm.bars[index].users.splice(Authfactory.auth.username);
+        }
+        
+        $http.post('/api/bars/'+vm.bars[index].id,vm.bars[index]).then(function(res){
+             console.log(res);   
+        }).catch((err)=>{
+            console.log(err);
+        });
     };
     
   
